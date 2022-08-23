@@ -1,0 +1,21 @@
+
+
+1;
+
+function u2 = inv_offset_amp(A,U,u1)
+	u2 = -u1*A + U*(1+A)
+	return
+endfunction
+
+
+
+function u2 = noinv_offset_amp(A,U,u1)
+	u2 = u1*(1+A) - U*A
+	return
+endfunction
+
+	 
+function u2 = noinv_bias_amp(A,U,u1)
+	u2 = u1*(1+A) + U
+	return
+endfunction

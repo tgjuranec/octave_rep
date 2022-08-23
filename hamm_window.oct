@@ -1,0 +1,24 @@
+
+
+1;
+
+fs = 512 
+M = 33
+f = 32
+
+n = 0:511
+x = rand(1,512)-0.5 + cos(2*pi*(f+100)*n/fs) + cos(2*pi*(f+72)*n/fs)+ 2
+
+
+hd = sin(2*pi*f*(-floor(M/2):floor(M/2))/fs)./(pi*(-floor(M/2):floor(M/2)))
+hd(ceil(M/2)) = 2*f/fs
+hamm_wind = hamming(M)
+h = hd .* hamm_wind'
+
+y = filter(h,1,x)
+figure
+
+plot(n,x,y)
+
+
+

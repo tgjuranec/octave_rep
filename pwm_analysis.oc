@@ -1,0 +1,26 @@
+#!/usr/bin/octave-3.4.0
+
+
+arg_list = argv();
+#argument list
+fs = fix(str2double(arg_list{1}))
+dc = str2double(arg_list{2})
+
+
+non = floor(fs * dc)
+noff = floor(fs * (1 - dc))
+
+x = horzcat(1,ones(1,floor(non)),zeros(1,floor(noff)))
+
+r = fft(x)
+
+nfreq = ceil(fs/2)
+rm = zeros(1,nfreq)
+
+rm(1) = r(1)
+rm(2:nfreq) = 2*abs(r(2:nfreq))
+rp(1) = 0
+rp(2:nfreq) = angle(r(2:nfreq))
+
+plot(rm)
+
